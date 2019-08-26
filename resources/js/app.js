@@ -8,6 +8,104 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import moment from 'moment';
+import { Form, HasError, AlertError } from 'vform';
+
+import Gate from "./Gate";
+Vue.prototype.$gate = new Gate(window.user);
+
+
+import Swal from 'sweetalert2'
+window.Swal = Swal; 
+
+const toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+window.toast = toast;
+
+
+window.Form = Form;
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+
+Vue.component('pagination', require('laravel-vue-pagination'));
+
+
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
+import VueProgressBar from 'vue-progressbar'
+Vue.use(VueProgressBar, {
+  color: 'rgb(143, 255, 199)',
+  failedColor: 'red',
+  height: '3px'
+})
+
+
+// this is google Api.
+import Vue from 'vue'
+import * as VueGoogleMaps from 'vue2-google-maps'; 
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyAAwHxhzoVjT3Qp7DBvRh_Y7ga_6Ud11po'    
+  } 
+});
+
+import { Datetime } from 'vue-datetime';
+ 
+Vue.component('datetime', Datetime);
+Vue.extend({template: '...', components: {
+    datetime: Datetime
+  }
+});
+
+
+
+import 'fullcalendar/dist/fullcalendar.css';
+window.Vue = require('vue');
+import axios from 'axios';
+Vue.use(axios);
+import FullCalendar from 'vue-full-calendar'; //Import Full-calendar
+Vue.use(FullCalendar);
+
+
+let routes = [
+    { path: '/dashboard', component: require('./components/Dashboard.vue').default },
+    { path: '/profile', component: require('./components/Profile.vue').default },
+    { path: '/users', component: require('./components/Users.vue').default },
+    { path: '/notfound', component: require('./components/NotFound.vue').default },
+    { path: '/product', component: require('./components/Product.vue').default },
+    { path: '/order', component: require('./components/Order.vue').default },
+    { path: '/supplier', component: require('./components/Supplier.vue').default },
+    { path: '/supplierproduct', component: require('./components/Supplierproduct.vue').default },
+    { path: '/orderdetail', component: require('./components/Orderdetail.vue').default },
+  ]
+
+
+const router = new VueRouter({
+  mode: 'history',
+  routes // short for `routes: routes`
+})
+
+
+//this make the first letter to uppercase 
+Vue.filter('upText', function(text){
+  return text.charAt(0).toUpperCase() + text.slice(1)
+});
+
+
+Vue.filter('myDate', function(created){
+  return moment(created).format('MMMM Do YYYY'); 
+});
+
+
+
+
+window.Fire = new Vue();
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,7 +118,30 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
+Vue.component(
+  'passport-clients',
+  require('./components/passport/Clients.vue').default
+);
+
+Vue.component(
+  'passport-authorized-clients',
+  require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+  'passport-personal-access-tokens',
+  require('./components/passport/PersonalAccessTokens.vue').default
+);
+
+Vue.component(
+  'not-found',
+  require('./components/NotFound.vue').default
+);
+
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,5 +150,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router
 });

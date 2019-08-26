@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//this help one direct a path directly to a specific route 
+Route::get('{path}', 'HomeController@index')->where('path', '([A-z\d-\/_.]+)?' );
+
+
+Route::get("/events", "Controller@Events");
+

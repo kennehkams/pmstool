@@ -11,7 +11,8 @@
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.8.1",
-        "axios": "^0.18",
+        "axios": "^0.18.0",
+        "babel-preset-stage-2": "^6.24.1",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
         "jquery": "^3.2",
@@ -25,6 +26,23 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "admin-lte": "^3.0.0-alpha.2"
+        "@fullcalendar/core": "^4.1.0",
+        "@fullcalendar/daygrid": "^4.1.0",
+        "@fullcalendar/vue": "^4.1.1",
+        "admin-lte": "^3.0.0-alpha.2",
+        "babel-runtime": "^6.26.0",
+        "laravel-vue-pagination": "^2.3.0",
+        "luxon": "^1.14.0",
+        "moment": "^2.24.0",
+        "select2": "^4.0.7-rc.0",
+        "sweetalert2": "^8.8.7",
+        "vform": "^1.0.0",
+        "vue-datetime": "^1.0.0-beta.10",
+        "vue-full-calendar": "^2.7.0",
+        "vue-progressbar": "^0.7.5",
+        "vue-router": "^3.0.6",
+        "vue2-datepicker": "^2.11.2",
+        "vue2-google-maps": "^0.10.6",
+        "weekstart": "^1.0.0"
     }
 }
